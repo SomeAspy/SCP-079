@@ -3,10 +3,10 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 "use strict";
-export const clientID="933045740052316160";//set this to your bots ID
-export const ownerID="516750892372852754";//Set this to your own ID.
-export const devMode=true;//Set this to true if you want to run the bot in dev mode.
-export const guildID="774050236376285224";//Set this to the guild ID. This is only used if you want to run the bot in dev mode.
+export const clientID="933045740052316160";
+export const ownerID="516750892372852754";
+export const devMode=true;
+export const guildID="774050236376285224";
 console.log(`Attempting to start bot...\nOwner ID: ${ownerID}\nAttempting to load dependencies...`);
 import{Client,Intents}from'discord.js';
 import dotenv from'dotenv';
@@ -40,3 +40,4 @@ client.on('interactionCreate',(interaction)=>{
     };
 });
 await client.login(process.env.DISCORD_TOKEN);
+client.user.setActivity('humanity',{type:'WATCHING'});
