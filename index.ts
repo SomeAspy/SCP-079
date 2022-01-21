@@ -27,6 +27,7 @@ for(const folder of commandFolders){
         commands.set(command.data.name,command);
     };
 };
+console.log(commands)
 await pushCommands();
 console.log(`Found ${commandData.length} commands.\nWaiting on Discord API...`);
 client.once('ready',()=>console.log(`Connected to Discord API!\nLogged in as ${client.user.tag}.\nMy ID: ${client.user.id}\nGuild Count: ${client.guilds.cache.size}`));

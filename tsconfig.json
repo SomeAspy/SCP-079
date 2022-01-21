@@ -4,7 +4,11 @@
         "moduleResolution": "node",
         "target":"ESNext",
         "sourceMap": true,
-        "outDir": "./dist",
+        //"outDir": "./dist",
+        "resolveJsonModule": true,
+        "removeComments": true,
+        "esModuleInterop": true,
+        "alwaysStrict": true
     },
     "exclude": [
         "node_modules"

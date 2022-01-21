@@ -9,6 +9,6 @@
     "dotenv": "^14.2.0"
   },
   "scripts":{
-    "start":"rimraf dist && tsc && node dist/index.js"
+    "start":"tsc && node index.js"
   }
 }
