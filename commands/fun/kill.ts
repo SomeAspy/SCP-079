@@ -3,7 +3,7 @@ import { client } from '../../index';
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-import {nouns,verbs} from'../../words.js';
+import {nouns,verbs} from'../../internals/words.js';
 import{randomFrom}from'../../internals/lib.js';
 import{SlashCommandBuilder}from'@discordjs/builders';
 export let data=new SlashCommandBuilder()

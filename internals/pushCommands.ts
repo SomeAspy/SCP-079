@@ -5,7 +5,7 @@
 "use strict";
 import{REST}from'@discordjs/rest';
 import{Routes}from'discord-api-types/v9';
-import{commandData,devMode,clientID,guildID}from'./index.js';
+import{commandData,devMode,clientID,guildID}from'../index.js';
 import*as dotenv from'dotenv';
 dotenv.config();
 const restAPI=new REST({version:'9'}).setToken(process.env.DISCORD_TOKEN);

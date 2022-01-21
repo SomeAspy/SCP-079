@@ -11,7 +11,7 @@ console.log(`Attempting to start bot...\nOwner ID: ${ownerID}\nAttempting to loa
 import{Client,Intents}from'discord.js';
 import*as dotenv from'dotenv';
 import{readdirSync}from'fs';
-import{pushCommands}from'./pushCommands.js';
+import{pushCommands}from'./internals/pushCommands.js';
 console.log('Dependencies loaded.\nLooking for .env file...');
 export const client=new Client({intents:[Intents.FLAGS.GUILDS]});
 dotenv.config();

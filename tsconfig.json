@@ -4,8 +4,6 @@
         "moduleResolution": "node",
         "target":"ESNext",
         "sourceMap": true,
-        //"outDir": "./dist",
-        "resolveJsonModule": true,
         "removeComments": true,
         "esModuleInterop": true,
         "alwaysStrict": true
