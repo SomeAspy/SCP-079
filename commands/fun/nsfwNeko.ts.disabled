@@ -1,0 +1,56 @@
+// Copyright (c) 2022 Aiden Baker
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+import{getNeko}from'../../internals/APIs.js';
+import{SlashCommandBuilder}from'@discordjs/builders';
+export let data=new SlashCommandBuilder()
+
+	.setDescription('Send images from nekos.life')
+    .setName('nsfwNeko')
+
+    .addStringOption(option=>
+        option.setName('endpoint')
+        .setDescription('The endpoint to use')
+        .setRequired(true)
+        .addChoice('hentaiGif','Random_hentai_gif')
+        .addChoice('pussy','pussy')
+        .addChoice('nekoGif','nsfw_neko_gif')
+        .addChoice('neko','lewd')
+        .addChoice('lesbian','les')
+        .addChoice('kuni','kuni')
+        .addChoice('cum','cum')
+        .addChoice('classic','classic')
+        .addChoice('boobs','boobs')
+        .addChoice('bj','bj')
+        .addChoice('anal','anal')
+        .addChoice('avatar','nsfw_avatar')
+        .addChoice('yuri','yuri')
+        .addChoice('trap','trap')
+        .addChoice('tits','tits')
+        .addChoice('girlGif','solog')
+        .addChoice('girl','solo')
+        .addChoice('pussyGif','pwankg')
+        .addChoice('pussyArt','pussy_jpg')
+        .addChoice('kemonomimi','lewdkemo')
+        .addChoice('kitsune','lewdk')
+        .addChoice('keta','keta')
+        .addChoice('holo','hololewd')
+        .addChoice('futanari','futanari')
+        .addChoice('femdom','femdom')
+        .addChoice('feetGif','feetg')
+        .addChoice('eroFeet','erofeet')
+        .addChoice('feet','feet')
+        .addChoice('ero','ero')
+        .addChoice('eroKitsune','erok')
+        .addChoice('eroKemonomimi','erokemo')
+        .addChoice('eroNeko','eron')
+        .addChoice('eroYuri','eroyuri')
+        .addChoice('cumArts','cum_jpg')
+        .addChoice('blowjob','blowjob')
+        .addChoice('spank','spank')
+        .addChoice('orgasm','gasm')
+    );
+export async function execute(interaction){
+    interaction.reply(await getNeko(interaction.options.endpoint));
+};

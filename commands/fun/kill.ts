@@ -1,4 +1,3 @@
-import { client } from '../../index';
 // Copyright (c) 2022 Aiden Baker
 //
 // This software is released under the MIT License.
