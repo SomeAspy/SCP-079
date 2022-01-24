@@ -8,6 +8,10 @@ import { pushCommands } from './internals/pushCommands.js';
 console.log('Dependencies loaded.\nLooking for .env file...');
 export const cli = new Client({ intents: [Intents.FLAGS.GUILDS] });
 dotenv.config();
+if (!process.env.DISCORD_TOKEN) {
+    dotenv.config({ path: '../.env' });
+}
+;
 console.log('Found .env file.\nSearching for commands...');
 export let commandData = [];
 export let commands = new Map();
@@ -41,4 +45,3 @@ cli.on('interactionCreate', (interaction) => {
 });
 await cli.login(process.env.DISCORD_TOKEN);
 cli.user.setActivity('humanity', { type: 'WATCHING' });
-//# sourceMappingURL=index.js.map

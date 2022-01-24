@@ -3,15 +3,23 @@
         "module": "ESNext",
         "moduleResolution": "node",
         "target":"ESNext",
-        "sourceMap": true,
+        "sourceMap": false,
         "removeComments": true,
         "alwaysStrict": true,
         "outDir":"./dist",
         "allowSyntheticDefaultImports": true,
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        //"strict": true, pain in the ass
+        "experimentalDecorators": true,
+        //"skipLibCheck": true,
+
+
+
     },
     "exclude": [
-        "node_modules"
+        "node_modules",
+        ".vscode",
+        ".github",
     ],
 
 }

@@ -21,4 +21,3 @@ export async function execute(interaction) {
     interaction.reply(out);
 }
 ;
-//# sourceMappingURL=kill.js.map

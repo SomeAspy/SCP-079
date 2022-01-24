@@ -7,4 +7,3 @@ export async function execute(interaction) {
     interaction.reply('Test command executed.');
 }
 ;
-//# sourceMappingURL=test.js.map

@@ -65,4 +65,3 @@ export const endpoints = {
         waifu: 'waifu'
     }
 };
-//# sourceMappingURL=nekoEndpoints.js.map

@@ -1,5 +1,4 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
-import { memberFromID } from '../../internals/library';
 export let data = new SlashCommandBuilder()
     .setName('mute')
     .setDescription('Mute a user.')
@@ -14,15 +13,16 @@ export let data = new SlashCommandBuilder()
     .setDescription('The reason for the mute')
     .setRequired(false));
 export async function execute(interaction) {
-    let user = memberFromID(interaction.options.getUser('target').id);
+    const member = await interaction.guild.members.fetch(interaction.options.getUser('target').id);
     let time = interaction.options.getInteger('time') * 1000;
     let reason = interaction.options.getString('reason');
+    console.log(member.kickable);
     if (!reason) {
         reason = 'No reason provided.';
     }
     ;
     try {
-        user.timeout(time, reason);
+        member.timeout(time, reason);
     }
     catch (e) {
         console.log(e);
@@ -31,4 +31,3 @@ export async function execute(interaction) {
     ;
 }
 ;
-//# sourceMappingURL=mute.js.map

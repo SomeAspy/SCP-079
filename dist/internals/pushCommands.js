@@ -4,8 +4,11 @@ import { devMode, clientID, guildID } from '../settings.js';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import dotenv from 'dotenv';
-dotenv.config();
-const restAPI = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN ? process.env.DISCORD_TOKEN : '');
+if (!process.env.DISCORD_TOKEN) {
+    dotenv.config({ path: '../.env' });
+}
+;
+const restAPI = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
 export async function pushCommands() {
     try {
         console.log(`Attempting to push ${commandData.length} commands to Discord API...`);
@@ -26,4 +29,3 @@ export async function pushCommands() {
     ;
 }
 ;
-//# sourceMappingURL=pushCommands.js.map

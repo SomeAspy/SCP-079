@@ -3,4 +3,3 @@ export async function getNeko(name) {
     return (await resp.json()).url;
 }
 ;
-//# sourceMappingURL=APIs.js.map
