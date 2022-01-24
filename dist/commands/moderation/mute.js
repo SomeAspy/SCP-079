@@ -1,0 +1,34 @@
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { memberFromID } from '../../internals/library';
+export let data = new SlashCommandBuilder()
+    .setName('mute')
+    .setDescription('Mute a user.')
+    .setDefaultPermission(true)
+    .addUserOption(option => option.setName('target')
+    .setDescription('The user to mute')
+    .setRequired(true))
+    .addIntegerOption(option => option.setName('time')
+    .setDescription('The time to mute the user for in minutes')
+    .setRequired(true))
+    .addStringOption(option => option.setName('reason')
+    .setDescription('The reason for the mute')
+    .setRequired(false));
+export async function execute(interaction) {
+    let user = memberFromID(interaction.options.getUser('target').id);
+    let time = interaction.options.getInteger('time') * 1000;
+    let reason = interaction.options.getString('reason');
+    if (!reason) {
+        reason = 'No reason provided.';
+    }
+    ;
+    try {
+        user.timeout(time, reason);
+    }
+    catch (e) {
+        console.log(e);
+        interaction.reply('Could not mute user.');
+    }
+    ;
+}
+;
+//# sourceMappingURL=mute.js.map
