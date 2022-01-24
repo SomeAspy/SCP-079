@@ -1,9 +1,4 @@
 {
-    "files.exclude": {
-        "**/*.js": { "when": "$(basename).ts" },
-        "**/*.map":true
-    },
-    "explorerExclude.backup": null,
     "cSpell.words": [
         "baka",
         "cumsluts",

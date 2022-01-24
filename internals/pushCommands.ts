@@ -3,12 +3,13 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 "use strict";
+import{commandData}from'../index.js';
+import{devMode,clientID,guildID}from'../settings.js';
 import{REST}from'@discordjs/rest';
 import{Routes}from'discord-api-types/v9';
-import{commandData,devMode,clientID,guildID}from'../index.js';
-import*as dotenv from'dotenv';
+import dotenv from'dotenv';
 dotenv.config();
-const restAPI=new REST({version:'9'}).setToken(process.env.DISCORD_TOKEN);
+const restAPI=new REST({version:'9'}).setToken(process.env.DISCORD_TOKEN?process.env.DISCORD_TOKEN:'');
 export async function pushCommands(){
 	try{
 		console.log(`Attempting to push ${commandData.length} commands to Discord API...`);

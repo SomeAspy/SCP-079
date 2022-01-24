@@ -1,14 +1,17 @@
 {
     "compilerOptions": {
-        "module": "esnext",
+        "module": "ESNext",
         "moduleResolution": "node",
         "target":"ESNext",
         "sourceMap": true,
         "removeComments": true,
-        "esModuleInterop": true,
         "alwaysStrict": true,
+        "outDir":"./dist",
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true
     },
     "exclude": [
         "node_modules"
-    ]
+    ],
+
 }

@@ -3,7 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 import {nouns,verbs} from'../../internals/words.js';
-import{randomFrom}from'../../internals/lib.js';
+import{randomFrom}from'../../internals/library.js';
 import{SlashCommandBuilder}from'@discordjs/builders';
 export let data=new SlashCommandBuilder()
 	.setName('kill')
