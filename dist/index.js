@@ -1,4 +1,3 @@
-"use strict";
 import { ownerID } from './settings.js';
 console.log(`Attempting to start bot...\nOwner ID: ${ownerID}\nAttempting to load dependencies...`);
 import { Client, Intents } from 'discord.js';
@@ -6,7 +5,7 @@ import dotenv from 'dotenv';
 import { readdirSync } from 'fs';
 import { pushCommands } from './internals/pushCommands.js';
 console.log('Dependencies loaded.\nLooking for .env file...');
-export const cli = new Client({ intents: [Intents.FLAGS.GUILDS] });
+export const cli = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] });
 dotenv.config();
 if (!process.env.DISCORD_TOKEN) {
     dotenv.config({ path: '../.env' });
@@ -43,5 +42,15 @@ cli.on('interactionCreate', (interaction) => {
     }
     ;
 });
+cli.on('error', (e) => console.log(e));
+cli.on('invalidated', () => {
+    console.log('Session invalidated! Shutting down, Reboot will be required manually.');
+    cli.destroy();
+});
+cli.on('invalidRequestWarning', (e) => console.log(e));
+cli.on('rateLimit', (e) => console.log(e));
+cli.on('shardDisconnect', (e) => console.log(e));
+cli.on('shardError', (e) => console.log(e));
+cli.on('warn', (e) => console.log(e));
 await cli.login(process.env.DISCORD_TOKEN);
 cli.user.setActivity('humanity', { type: 'WATCHING' });

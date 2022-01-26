@@ -1,6 +1,5 @@
-"use strict";
 import { commandData } from '../index.js';
-import { devMode, clientID, guildID } from '../settings.js';
+import { devMode, guildID, clientID } from '../settings.js';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import dotenv from 'dotenv';
@@ -17,7 +16,7 @@ export async function pushCommands() {
             await restAPI.put(Routes.applicationGuildCommands(clientID, guildID), { body: commandData });
         }
         else {
-            console.log('Running in production mode.\nPushing commands to bot...');
+            console.log('Running in production mode.\nPushing commands to bot globally...');
             await restAPI.put(Routes.applicationCommands(clientID), { body: commandData });
         }
         ;

@@ -1,9 +1,10 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
+import { cli } from '../../index.js';
 export const data = new SlashCommandBuilder()
-    .setName('test')
-    .setDescription('A test command.')
+    .setName('shutdown')
+    .setDescription('shutdown the bot')
     .setDefaultPermission(false);
 export async function execute(interaction) {
-    interaction.reply('Test command executed.');
+    cli.destroy();
 }
 ;

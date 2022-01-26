@@ -3,10 +3,11 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 import{SlashCommandBuilder}from'@discordjs/builders';
+import{cli}from'../../index.js';
 export const data=new SlashCommandBuilder()
-	.setName('test')
-	.setDescription('A test command.')
+	.setName('shutdown')
+	.setDescription('shutdown the bot')
 	.setDefaultPermission(false);
 export async function execute(interaction):Promise<void>{
-	interaction.reply('Test command executed.');
+    cli.destroy();
 };

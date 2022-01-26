@@ -1,32 +1,28 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 export const data = new SlashCommandBuilder()
-    .setName('mute')
-    .setDescription('Mute a user.')
+    .setName('unmute')
+    .setDescription('Unmute a user.')
     .setDefaultPermission(true)
     .addUserOption(option => option.setName('target')
-    .setDescription('The user to mute')
-    .setRequired(true))
-    .addIntegerOption(option => option.setName('time')
-    .setDescription('The time to mute the user for in minutes')
+    .setDescription('The user to unmute')
     .setRequired(true))
     .addStringOption(option => option.setName('reason')
-    .setDescription('The reason for the mute')
+    .setDescription('The reason for the unmute')
     .setRequired(false));
 export async function execute(interaction) {
     const member = await interaction.guild.members.fetch(interaction.options.getUser('target').id);
-    let time = interaction.options.getInteger('time') * 60000;
     let reason = interaction.options.getString('reason');
     if (!reason) {
         reason = 'No reason provided.';
     }
     ;
     try {
-        member.timeout(time, reason);
-        interaction.reply(`${member.toString()} has been muted for ${interaction.options.getInteger('time')} minutes with reason ${reason}`);
+        member.timeout(0, reason);
+        interaction.reply(`${member.toString()} has been unmuted with reason ${reason}`);
     }
     catch (e) {
         console.log(e);
-        interaction.reply('Could not mute user.');
+        interaction.reply('Could not unmute user.');
     }
     ;
 }

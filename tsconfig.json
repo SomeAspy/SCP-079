@@ -12,6 +12,7 @@
         //"strict": true, pain in the ass
         "experimentalDecorators": true,
         //"skipLibCheck": true,
+        "resolveJsonModule": true,
 
 
 
