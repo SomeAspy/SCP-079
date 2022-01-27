@@ -8,15 +8,16 @@ import{Client,Intents}from'discord.js';
 import dotenv from'dotenv';
 import{readdirSync}from'fs';
 import{pushCommands}from'./internals/pushCommands.js';
+import{indexCommands}from'./internals/indexCommands.js';
 console.log('Dependencies loaded.\nLooking for .env file...');
-export const cli=new Client({intents:[Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MEMBERS]});
+const cli=new Client({intents:[Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MEMBERS]});
 dotenv.config();
 if(!process.env.DISCORD_TOKEN){
     dotenv.config({path:'../.env'});
 };
 console.log('Found .env file.\nSearching for commands...');
 export let commandData=[];
-export let commands=new Map();
+let commands=new Map();
 const commandFolders=readdirSync('./commands');
 for(const folder of commandFolders){
     console.log(`Found command folder: ${folder}`);
@@ -34,7 +35,7 @@ cli.once('ready',()=>console.log(`Connected to Discord API!\nLogged in as ${cli.
 cli.on('interactionCreate',(interaction)=>{
     if(!interaction.isCommand())return;
     try{
-        commands.get(interaction.commandName).execute(interaction);
+        commands.get(interaction.commandName).execute(interaction,cli);
         console.log(`Executed command: ${interaction.commandName}`);
     }catch(e){
         console.log(e);
@@ -54,3 +55,5 @@ cli.on('warn',(e)=>console.log(e));
 //login and set status
 await cli.login(process.env.DISCORD_TOKEN);
 cli.user.setActivity('humanity',{type:'WATCHING'});
+//index commands to commands.json
+await indexCommands(cli);

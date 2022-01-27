@@ -4,8 +4,9 @@ import { Client, Intents } from 'discord.js';
 import dotenv from 'dotenv';
 import { readdirSync } from 'fs';
 import { pushCommands } from './internals/pushCommands.js';
+import { indexCommands } from './internals/indexCommands.js';
 console.log('Dependencies loaded.\nLooking for .env file...');
-export const cli = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] });
+const cli = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] });
 dotenv.config();
 if (!process.env.DISCORD_TOKEN) {
     dotenv.config({ path: '../.env' });
@@ -34,7 +35,7 @@ cli.on('interactionCreate', (interaction) => {
     if (!interaction.isCommand())
         return;
     try {
-        commands.get(interaction.commandName).execute(interaction);
+        commands.get(interaction.commandName).execute(interaction, cli);
         console.log(`Executed command: ${interaction.commandName}`);
     }
     catch (e) {
@@ -54,3 +55,4 @@ cli.on('shardError', (e) => console.log(e));
 cli.on('warn', (e) => console.log(e));
 await cli.login(process.env.DISCORD_TOKEN);
 cli.user.setActivity('humanity', { type: 'WATCHING' });
+await indexCommands(cli);
