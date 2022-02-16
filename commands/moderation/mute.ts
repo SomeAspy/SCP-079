@@ -22,18 +22,22 @@ export const data=new SlashCommandBuilder()
             .setDescription('The reason for the mute')
             .setRequired(false)
     );
-export async function execute(interaction:any):Promise<void>{
-    const member=await interaction.guild.members.fetch(interaction.options.getUser('target').id);
-    let time=interaction.options.getInteger('time')*60000;
-    let reason=interaction.options.getString('reason');
-    if(!reason){
-        reason='No reason provided.';
-    };
-    try{
-        member.timeout(time,reason);
-        interaction.reply(`${member.toString()} has been muted for ${interaction.options.getInteger('time')} minutes with reason ${reason}`);
-    }catch(e){
-        console.log(e);
-        interaction.reply('Could not mute user.');
+export async function execute(interaction:any):Promise<void>{ //todo: imply function type
+    if(!interaction.memberPermissions.has('MODERATE_MEMBERS')){
+        interaction.reply('You do not have permission to use this command.\nMissing permission: `MODERATE_MEMBERS`');
+    }else{
+        const member=await interaction.guild.members.fetch(interaction.options.getUser('target').id);
+        let time=interaction.options.getInteger('time')*60000;
+        let reason=interaction.options.getString('reason');
+        if(!reason){
+            reason='No reason provided.';
+        };
+        try{
+            member.timeout(time,reason);
+            interaction.reply(`${member.toString()} has been muted for ${interaction.options.getInteger('time')} minutes with reason ${reason}`);
+        }catch(e){
+            console.log(e);
+            interaction.reply('Could not mute user.'); //todo: return error to user
+        };
     };
 };

@@ -18,16 +18,20 @@ export const data=new SlashCommandBuilder()
             .setRequired(false)
     );
 export async function execute(interaction:any):Promise<void>{
-    const member=await interaction.guild.members.fetch(interaction.options.getUser('target').id);
-    let reason=interaction.options.getString('reason');
-    if(!reason){
-        reason='No reason provided.';
-    };
-    try{
-        member.timeout(0,reason);
-        interaction.reply(`${member.toString()} has been unmuted with reason ${reason}`);
-    }catch(e){
-        console.log(e);
-        interaction.reply('Could not unmute user.');
+    if(!interaction.memberPermissions.has('MODERATE_MEMBERS')){
+        interaction.reply('You do not have permission to use this command.\nMissing permission: `MODERATE_MEMBERS`');
+    }else{
+        const member=await interaction.guild.members.fetch(interaction.options.getUser('target').id);
+        let reason=interaction.options.getString('reason');
+        if(!reason){
+            reason='No reason provided.';
+        };
+        try{
+            member.timeout(0,reason);
+            interaction.reply(`${member.toString()} has been unmuted with reason ${reason}`);
+        }catch(e){
+            console.log(e);
+            interaction.reply('Could not unmute user.');
+        };
     };
 };

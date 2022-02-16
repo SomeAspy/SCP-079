@@ -8,7 +8,7 @@ export let data=new SlashCommandBuilder()
 
 	.setDescription('Send images from nekos.life')
     .setName('nsfwNeko')
-
+//
     .addStringOption(option=>
         option.setName('endpoint')
         .setDescription('The endpoint to use')

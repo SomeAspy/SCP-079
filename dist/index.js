@@ -4,7 +4,7 @@ import { Client, Intents } from 'discord.js';
 import dotenv from 'dotenv';
 import { readdirSync } from 'fs';
 import { pushCommands } from './internals/pushCommands.js';
-import { indexCommands } from './internals/indexCommands.js';
+import { applyPermissions } from './internals/permissionOverrides.js';
 console.log('Dependencies loaded.\nLooking for .env file...');
 const cli = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] });
 dotenv.config();
@@ -14,7 +14,7 @@ if (!process.env.DISCORD_TOKEN) {
 ;
 console.log('Found .env file.\nSearching for commands...');
 export let commandData = [];
-export let commands = new Map();
+let commands = new Map();
 const commandFolders = readdirSync('./commands');
 for (const folder of commandFolders) {
     console.log(`Found command folder: ${folder}`);
@@ -54,5 +54,7 @@ cli.on('shardDisconnect', (e) => console.log(e));
 cli.on('shardError', (e) => console.log(e));
 cli.on('warn', (e) => console.log(e));
 await cli.login(process.env.DISCORD_TOKEN);
+console.log('Logged in!\nApplying permissions...');
+await applyPermissions(cli);
 cli.user.setActivity('humanity', { type: 'WATCHING' });
-await indexCommands(cli);
+console.log('Permissions applied!\nBot is ready!');

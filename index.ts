@@ -8,7 +8,7 @@ import{Client,Intents}from'discord.js';
 import dotenv from'dotenv';
 import{readdirSync}from'fs';
 import{pushCommands}from'./internals/pushCommands.js';
-import{indexCommands}from'./internals/indexCommands.js';
+import{applyPermissions}from'./internals/permissionOverrides.js';
 console.log('Dependencies loaded.\nLooking for .env file...');
 const cli=new Client({intents:[Intents.FLAGS.GUILDS,Intents.FLAGS.GUILD_MEMBERS]});
 dotenv.config();
@@ -52,8 +52,9 @@ cli.on('rateLimit',(e)=>console.log(e));
 cli.on('shardDisconnect',(e)=>console.log(e));
 cli.on('shardError',(e)=>console.log(e));
 cli.on('warn',(e)=>console.log(e));
-//login and set status
-await cli.login(process.env.DISCORD_TOKEN);
+//login, status, and permission overrides
+await cli.login(process.env.DISCORD_TOKEN)
+console.log('Logged in!\nApplying permissions...');
+await applyPermissions(cli);
 cli.user.setActivity('humanity',{type:'WATCHING'});
-//index commands to commands.json
-await indexCommands(cli);
+console.log('Permissions applied!\nBot is ready!');

@@ -1,11 +1,18 @@
 import { devMode, guildID } from '../settings.js';
 export async function indexCommands(cli) {
     let source;
+    let commandIDs = new Map;
     if (devMode) {
         source = await cli.guilds.fetch(guildID).then((guild) => guild.commands.fetch());
     }
     else {
         source = await cli.application.commands.fetch();
     }
-    console.log(source);
+    for (const command of source.values()) {
+        const name = command.name;
+        const id = command.id;
+        commandIDs.set(name, id);
+    }
+    return commandIDs;
 }
+;
