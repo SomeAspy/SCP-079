@@ -1,0 +1,11 @@
+HIGH PRIORITY
+  Permissions
+  Nekos.Life api
+  
+NORMAL PRIORITY
+  Per Server configs
+
+LOW PRIORITY
+  Dashboard
+  Logging
+  
