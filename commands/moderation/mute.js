@@ -26,7 +26,6 @@ export const data = new SlashCommandBuilder()
             .setRequired(false),
     );
 export async function execute(interaction) {
-    //todo: imply function type
     if (!interaction.memberPermissions.has('MODERATE_MEMBERS')) {
         interaction.reply(
             'You do not have permission to use this command.\nMissing permission: `MODERATE_MEMBERS`',

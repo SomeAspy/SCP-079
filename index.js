@@ -16,9 +16,6 @@ const cli = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS],
 });
 dotenv.config();
-if (!process.env.DISCORD_TOKEN) {
-    dotenv.config({ path: '../.env' });
-}
 console.log('Found .env file.\nSearching for commands...');
 export let commandData = [];
 let commands = new Map();

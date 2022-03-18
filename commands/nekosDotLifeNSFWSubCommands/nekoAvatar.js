@@ -6,7 +6,7 @@ import { getNeko } from '../../internals/APIs.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { randomFrom } from '../../internals/library.js';
 export const data = new SlashCommandBuilder()
-    .setName('nekoAvatar')
+    .setName('nekoavatar')
     .setDescription('Get avatars from nekos.life!');
 export async function execute(interaction) {
     interaction.reply(

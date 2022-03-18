@@ -7,9 +7,7 @@ import { devMode, guildID, clientID } from '../settings.js';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import dotenv from 'dotenv';
-if (!process.env.DISCORD_TOKEN) {
-    dotenv.config({ path: '../.env' });
-}
+dotenv.config();
 const restAPI = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
 export async function pushCommands() {
     try {
