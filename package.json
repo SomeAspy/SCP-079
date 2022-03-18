@@ -6,7 +6,8 @@
 		"discord-api-types": "^0.26.1",
 		"discord.js": "^13.6.0",
 		"dotenv": "^14.2.0",
-		"fs": "^0.0.1-security"
+		"fs": "^0.0.1-security",
+		"undici": "^4.16.0"
 	},
 	"scripts": {
 		"start": "rimraf dist && tsc && cd dist && node index.js",

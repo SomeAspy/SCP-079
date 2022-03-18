@@ -2,25 +2,17 @@
     "compilerOptions": {
         "module": "ESNext",
         "moduleResolution": "node",
-        "target":"ESNext",
+        "target": "ESNext",
         "sourceMap": false,
         "removeComments": true,
         "alwaysStrict": true,
-        "outDir":"./dist",
+        "outDir": "./dist",
         "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,
-        //"strict": true, pain in the ass
+        //"strict": true,
         "experimentalDecorators": true,
         //"skipLibCheck": true,
-        "resolveJsonModule": true,
-
-
-
+        "resolveJsonModule": true
     },
-    "exclude": [
-        "node_modules",
-        ".vscode",
-        ".github",
-    ],
-
+    "exclude": ["node_modules", ".vscode", ".github"]
 }
