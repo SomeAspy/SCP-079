@@ -12,8 +12,5 @@
 	"scripts": {
 		"start": "rimraf dist && tsc && cd dist && node index.js",
 		"compile": "rimraf dist && tsc"
-	},
-	"devDependencies": {
-		"rimraf": "^3.0.2"
 	}
 }

@@ -1,7 +1,7 @@
 
 # SCP-079
 
-A discord bot I'm writing in TypeScript with slash commands.
+A discord bot I'm writing in JavaScript with slash commands.
 
 ## Use it yourself:
 
@@ -18,9 +18,3 @@ A discord bot I'm writing in TypeScript with slash commands.
 ### What is `devMode`?
 
 ```devMode``` when set to true, will only send slash commands to the server specified in `guildID`, the reason you would want to do this is that when `devMode` is false, commands can take up to an hour to push to discord, and are also pushed to all guilds the bot is in.
-
-### I get errors when I try to compile!
-
-TSC and TypeScript must be installed globally.
-
-run "`npm i -g typescript tsc`"
