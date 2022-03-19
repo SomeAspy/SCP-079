@@ -28,7 +28,7 @@ for (const folder of commandFolders) {
     for (const file of commandFiles) {
         console.log(`Found command file: ${file}`);
         const command = await import(`./commands/${folder}/${file}`);
-        commandData.push(command.data); // THIS IS A TEMPORARY FIX
+        commandData.push(command.data);
         commands.set(command.data.name, command);
     }
 }

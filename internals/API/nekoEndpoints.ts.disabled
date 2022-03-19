@@ -12,8 +12,6 @@ export const endpoints={
         poke:'poke',
         pat:'pat',
         neko:'neko',
-        meow:'meow',
-        lizard:'lizard',
         kiss:'kiss',
         hug:'hug',
         foxGirl:'fox_girl',
@@ -21,9 +19,7 @@ export const endpoints={
         cuddle:'cuddle',
         smug:'smug',
         baka:'baka',
-        dog:'woof',
         wallpaper:'wallpaper',
-        goose:'goose',
         gecg:'gecg',
         waifu:'waifu'
     }
