@@ -3,6 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 import { SlashCommandBuilder } from '@discordjs/builders';
+import { MessageEmbed } from 'discord.js';
 export const data = new SlashCommandBuilder()
     .setName('mute')
     .setDescription('Mute a user.')
@@ -26,10 +27,11 @@ export const data = new SlashCommandBuilder()
             .setRequired(false),
     );
 export async function execute(interaction) {
+    const out = new MessageEmbed();
     if (!interaction.memberPermissions.has('MODERATE_MEMBERS')) {
-        interaction.reply(
-            'You do not have permission to use this command.\nMissing permission: `MODERATE_MEMBERS`',
-        );
+        out.description =
+            'You do not have permission to use this command.\nMissing permission: `MODERATE_MEMBERS`';
+        out.color = '#FF0000';
     } else {
         const member = await interaction.guild.members.fetch(
             interaction.options.getUser('target').id,
@@ -40,15 +42,17 @@ export async function execute(interaction) {
             reason = 'No reason provided.';
         }
         try {
-            member.timeout(time, reason);
-            interaction.reply(
-                `${member.toString()} has been muted for ${interaction.options.getInteger(
-                    'time',
-                )} minutes with reason ${reason}`,
-            );
+            await member.timeout(time, reason);
+            out.description = `${member.user.toString()} has been muted for ${interaction.options.getInteger(
+                'time',
+            )} minutes with reason ${reason}`;
+            out.color = '#00FF00';
         } catch (e) {
-            console.log(e);
-            interaction.reply('Could not mute user.'); //todo: return error to user
+            if (e.message === 'Missing Permissions') {
+                out.description = `I do not have permission to mute ${member.toString()}.`;
+                out.color = '#FF0000';
+            }
         }
     }
+    await interaction.reply({ embeds: [out] });
 }

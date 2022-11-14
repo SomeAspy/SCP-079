@@ -22,8 +22,8 @@ export async function execute(interaction) {
     } else {
         user = interaction.options.getUser('target');
     }
-    let out = `${interaction.user.toString()} ${randomFrom(verbs)}s ${
-        user.toString
-    } with a ${randomFrom(nouns)}, killing them!`;
-    interaction.reply(out);
+    let out = `${interaction.user.toString()} ${randomFrom(
+        verbs,
+    )}s ${user.toString()} with a ${randomFrom(nouns)}, killing them!`;
+    await interaction.reply(out);
 }

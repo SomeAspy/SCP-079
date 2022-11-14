@@ -20,10 +20,11 @@ export const data = new SlashCommandBuilder()
             .setRequired(false),
     );
 export async function execute(interaction) {
+    const out = {};
     if (!interaction.memberPermissions.has('MODERATE_MEMBERS')) {
-        interaction.reply(
-            'You do not have permission to use this command.\nMissing permission: `MODERATE_MEMBERS`',
-        );
+        out.description =
+            'You do not have permission to use this command.\nMissing permission: `MODERATE_MEMBERS`';
+        out.color = '#FF0000';
     } else {
         const member = await interaction.guild.members.fetch(
             interaction.options.getUser('target').id,
@@ -33,13 +34,16 @@ export async function execute(interaction) {
             reason = 'No reason provided.';
         }
         try {
-            member.timeout(0, reason);
-            interaction.reply(
-                `${member.toString()} has been unmuted with reason ${reason}`,
-            );
+            await member.timeout(0, reason);
+            out.description = `${member.toString()} has been unmuted with reason ${reason}`;
+            out.color = '#00FF00';
         } catch (e) {
-            console.log(e);
-            interaction.reply('Could not unmute user.');
+            out.description = `I could not unmute ${member.toString()}.`;
+            if (e.message === 'Missing Permissions') {
+                out.description = `I do not have permission to unmute ${member.toString()}.`;
+            }
+            out.color = '#FF0000';
         }
     }
+    await interaction.reply({ embeds: [out] });
 }

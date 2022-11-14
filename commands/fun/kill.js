@@ -3,8 +3,9 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 import { nouns, verbs } from '../../internals/words.js';
-import { randomFrom } from '../../internals/library.js';
+import { randomFrom, randomHex } from '../../internals/library.js';
 import { SlashCommandBuilder } from '@discordjs/builders';
+import { MessageEmbed } from 'discord.js';
 export const data = new SlashCommandBuilder()
     .setName('kill')
     .setDescription('Kill Someone!')
@@ -22,8 +23,12 @@ export async function execute(interaction) {
     } else {
         user = interaction.options.getUser('target');
     }
-    let out = `${interaction.user.toString()} ${randomFrom(verbs)}s ${
-        user.toString
-    } with a ${randomFrom(nouns)}, killing them!`;
-    interaction.reply(out);
+    const out = new MessageEmbed()
+        .setDescription(
+            `${interaction.user.toString()} ${randomFrom(
+                verbs,
+            )}s ${user.toString()} with a ${randomFrom(nouns)}, killing them!`,
+        )
+        .setColor(randomHex());
+    await interaction.reply({ embeds: [out] });
 }
