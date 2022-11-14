@@ -1,7 +1,4 @@
-// Copyright (c) 2022 Aiden Baker
-//
-// This software is released under the MIT License.
-// https://opensource.org/licenses/MIT
+
 import { indexCommands } from './indexCommands.js';
 import { devMode, guildID, ownerID } from '../settings.js';
 export async function applyPermissions(cli) {

@@ -1,7 +1,3 @@
-// Copyright (c) 2022 Aiden Baker
-//
-// This software is released under the MIT License.
-// https://opensource.org/licenses/MIT
 import { ownerID } from './settings.js';
 console.log(
     `Attempting to start bot...\nOwner ID: ${ownerID}\nAttempting to load dependencies...`,

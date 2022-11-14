@@ -1,7 +1,4 @@
-// Copyright (c) 2022 Aiden Baker
-//
-// This software is released under the MIT License.
-// https://opensource.org/licenses/MIT
+
 import { commandData } from '../index.js';
 import { devMode, guildID, clientID } from '../settings.js';
 import { REST } from '@discordjs/rest';
