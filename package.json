@@ -7,7 +7,7 @@
         "discord.js": "^13.6.0",
         "dotenv": "^14.2.0",
         "fs": "^0.0.1-security",
-        "undici": "^5.8.2"
+        "undici": "^5.19.1"
     },
     "scripts": {
         "start": "node index.js"
